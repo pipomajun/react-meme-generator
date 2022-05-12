@@ -38,9 +38,13 @@ function MemeForm() {
   // };
   // function to generate the meme for preview
   const generateMeme = () => {
-    setGeneratedMeme(
-      `https://api.memegen.link/images/${selectedTemplate}/${topText}/${bottomText}.png`,
-    );
+    if (topText && bottomText) {
+      setGeneratedMeme(
+        `https://api.memegen.link/images/${selectedTemplate}/${topText}/${bottomText}.png`,
+      );
+    } else {
+      setGeneratedMeme(`https://api.memegen.link/images/${selectedTemplate}`);
+    }
   };
   // function to download the meme
   const downloadMeme = () => {
