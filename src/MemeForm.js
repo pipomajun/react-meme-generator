@@ -12,7 +12,9 @@ function MemeForm() {
   const [selectedTemplate, setSelectedTemplate] = useState('');
   // variables needed to download the meme.img
   const [generatedMeme, setGeneratedMeme] = useState(
-    `https://api.memegen.link/images/doge.png`,
+    `https://api.memegen.link/images/${
+      selectedTemplate ? selectedTemplate : 'bender'
+    }/${topText ? topText : '_'}/${bottomText ? bottomText : '_'}.png`,
   );
   // Fetch data from the API - not sure why try-catch worked
   useEffect(() => {
@@ -36,31 +38,40 @@ function MemeForm() {
   //     setSelectedTemplate(event.target.value);
   //   }
   // };
-  // function to generate the meme for preview
+  // function to generate the meme for preview - if/else statement because url path would be incorrect without text
   const generateMeme = () => {
-    if (topText && bottomText) {
-      setGeneratedMeme(
-        `https://api.memegen.link/images/${selectedTemplate}/${topText}/${bottomText}.png`,
-      );
-    } else {
-      setGeneratedMeme(`https://api.memegen.link/images/${selectedTemplate}`);
-    }
+    setGeneratedMeme(
+      `https://api.memegen.link/images/${
+        selectedTemplate ? selectedTemplate : 'bender'
+      }/${topText ? topText : '_'}/${bottomText ? bottomText : '_'}.png`,
+    );
   };
   // function to download the meme
   const downloadMeme = () => {
     saveAs(generatedMeme, `custom_meme_${topText}_${bottomText}.jpg`);
   };
+  // function to handle submit
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   // where the fun stuff happens
   return (
     <div className="meme-form">
       <div className="input-form">
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>
             Top text
             <input
               placeholder="Top text goes here..."
               value={topText}
               onChange={(event) => setTopText(event.currentTarget.value)}
+              // onKeyDown={(event) => {
+              //   // make sure to generate meme after choosing in selector by pressing enter-key
+              //   if (event.key === 'Enter') {
+              //     event.preventDefault();
+              //     generateMeme(event.target.value);
+              //   }
+              // }}
             />
           </label>
           <label>
@@ -69,20 +80,28 @@ function MemeForm() {
               placeholder="Bottom text goes here..."
               value={bottomText}
               onChange={(event) => setBottomText(event.currentTarget.value)}
+              // onKeyDown={(event) => {
+              //   // make sure to generate meme after choosing in selector by pressing enter-key
+              //   if (event.key === 'Enter') {
+              //     event.preventDefault();
+              //     generateMeme(event.target.value);
+              //   }
+              // }}
             />
           </label>
-
-          {/* <label>
-          Meme template
-          <input
-            placeholder="Enter a meme (e.g. doge)"
-            value={inputText.templateText}
-            onChange={handleChange}
-          />
-        </label> */}
           <label>
             Meme template
-            <select onChange={handleSelection} onKeyDown={generateMeme}>
+            <select
+              value={selectedTemplate}
+              onChange={handleSelection}
+              onKeyDown={(event) => {
+                // make sure to generate meme after choosing in selector by pressing enter-key
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                  generateMeme(event.target.value);
+                }
+              }}
+            >
               <option>Select a template for your meme</option>
               {templates.map((template) => (
                 <option key={template.id} value={template.id}>
