@@ -15,12 +15,3 @@ function App() {
 }
 
 export default App;
-
-// {
-//   /* <Header />
-// <br />
-// <MemeGenerator />
-// <br />
-// <br />
-// <TextFields /> */
-// }
