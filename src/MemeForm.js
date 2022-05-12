@@ -64,7 +64,7 @@ function MemeForm() {
             <input
               placeholder="Top text goes here..."
               value={topText}
-              onChange={(event) => setTopText(event.currentTarget.value)}
+              onChange={(event) => setTopText(event.target.value)}
               // onKeyDown={(event) => {
               //   /Make sure to generate meme after choosing in selector by pressing enter-key
               //   if (event.key === 'Enter') {
