@@ -79,7 +79,7 @@ function MemeForm() {
             <input
               placeholder="Bottom text goes here..."
               value={bottomText}
-              onChange={(event) => setBottomText(event.currentTarget.value)}
+              onChange={(event) => setBottomText(event.target.value)}
               // onKeyDown={(event) => {
               //   // make sure to generate meme after choosing in selector by pressing enter-key
               //   if (event.key === 'Enter') {
