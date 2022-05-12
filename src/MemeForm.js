@@ -13,8 +13,8 @@ function MemeForm() {
   // variables needed to download the meme.img
   const [generatedMeme, setGeneratedMeme] = useState(
     `https://api.memegen.link/images/${
-      selectedTemplate ? selectedTemplate : 'bender'
-    }/${topText ? topText : '_'}/${bottomText ? bottomText : ' '}.png`,
+      selectedTemplate ? selectedTemplate : 'aag'
+    }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`,
   );
   // Fetch data from the API - not sure why try-catch worked
   useEffect(() => {
@@ -42,8 +42,8 @@ function MemeForm() {
   const generateMeme = () => {
     setGeneratedMeme(
       `https://api.memegen.link/images/${
-        selectedTemplate ? selectedTemplate : 'bender'
-      }/${topText ? topText : '_'}/${bottomText ? bottomText : ' '}.png`,
+        selectedTemplate ? selectedTemplate : 'aag'
+      }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`,
     );
   };
   // function to download the meme
@@ -126,8 +126,8 @@ function MemeForm() {
         <img
           data-test-id="meme-image"
           src={`https://api.memegen.link/images/${
-            selectedTemplate ? selectedTemplate : 'bender'
-          }/${topText ? topText : '_'}/${bottomText ? bottomText : ' '}.png`}
+            selectedTemplate ? selectedTemplate : 'aag'
+          }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`}
           alt="Oops! You have not chosen anything yet or something did not work..."
         />
       </div>
