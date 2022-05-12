@@ -12,7 +12,7 @@ function MemeForm() {
   const [selectedTemplate, setSelectedTemplate] = useState('');
   // variables needed to download the meme.img
   const [generatedMeme, setGeneratedMeme] = useState(
-    `https://api.memegen.link/images/doge/${topText}/${bottomText}.png`,
+    `https://api.memegen.link/images/doge/such_generator/wow.png`,
   );
   // Fetch data from the API - not sure why try-catch worked
   useEffect(() => {
