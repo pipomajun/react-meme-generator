@@ -12,7 +12,7 @@ function MemeForm() {
   const [selectedTemplate, setSelectedTemplate] = useState('');
   // variables needed to download the meme.img
   const [generatedMeme, setGeneratedMeme] = useState(
-    'https://api.memegen.link/images/doge/such_generator/very_skill.png',
+    `https://api.memegen.link/images/doge/${topText}/${bottomText}.png`,
   );
   // Fetch data from the API - not sure why try-catch worked
   useEffect(() => {
@@ -39,7 +39,7 @@ function MemeForm() {
   // function to generate the meme for preview
   const generateMeme = () => {
     setGeneratedMeme(
-      `https://api.memegen.link/images/${selectedTemplate}/${topText}/${bottomText}`,
+      `https://api.memegen.link/images/${selectedTemplate}/${topText}/${bottomText}.png`,
     );
   };
   // function to download the meme
