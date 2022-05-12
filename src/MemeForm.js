@@ -66,7 +66,7 @@ function MemeForm() {
               value={topText}
               onChange={(event) => setTopText(event.currentTarget.value)}
               // onKeyDown={(event) => {
-              //   // make sure to generate meme after choosing in selector by pressing enter-key
+              //   /Make sure to generate meme after choosing in selector by pressing enter-key
               //   if (event.key === 'Enter') {
               //     event.preventDefault();
               //     generateMeme(event.target.value);
@@ -125,7 +125,9 @@ function MemeForm() {
         <h2>Preview your meme before saving:</h2>
         <img
           data-test-id="meme-image"
-          src={generatedMeme}
+          src={`https://api.memegen.link/images/${
+            selectedTemplate ? selectedTemplate : 'bender'
+          }/${topText ? topText : '_'}/${bottomText ? bottomText : '_'}.png`}
           alt="Oops! You have not chosen anything yet or something did not work..."
         />
       </div>
