@@ -13,7 +13,7 @@ function MemeForm() {
   // variables needed to download the meme.img
   const [generatedMeme, setGeneratedMeme] = useState(
     `https://api.memegen.link/images/${
-      selectedTemplate ? selectedTemplate : 'aag'
+      selectedTemplate ? selectedTemplate : 'bender'
     }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`,
   );
   // Fetch data from the API - not sure why try-catch worked
@@ -42,7 +42,7 @@ function MemeForm() {
   const generateMeme = () => {
     setGeneratedMeme(
       `https://api.memegen.link/images/${
-        selectedTemplate ? selectedTemplate : 'aag'
+        selectedTemplate ? selectedTemplate : 'bender'
       }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`,
     );
   };
@@ -59,37 +59,23 @@ function MemeForm() {
     <div className="meme-form">
       <div className="input-form">
         <form onSubmit={handleSubmit}>
-          <label>
+          <label className="topTextLabel">
             Top text
             <input
               placeholder="Top text goes here..."
               value={topText}
               onChange={(event) => setTopText(event.target.value)}
-              // onKeyDown={(event) => {
-              //   /Make sure to generate meme after choosing in selector by pressing enter-key
-              //   if (event.key === 'Enter') {
-              //     event.preventDefault();
-              //     generateMeme(event.target.value);
-              //   }
-              // }}
             />
           </label>
-          <label>
+          <label className="bottomTextLabel">
             Bottom text
             <input
               placeholder="Bottom text goes here..."
               value={bottomText}
               onChange={(event) => setBottomText(event.target.value)}
-              // onKeyDown={(event) => {
-              //   // make sure to generate meme after choosing in selector by pressing enter-key
-              //   if (event.key === 'Enter') {
-              //     event.preventDefault();
-              //     generateMeme(event.target.value);
-              //   }
-              // }}
             />
           </label>
-          <label>
+          <label className="templateLabel">
             Meme template
             <select
               value={selectedTemplate}
@@ -112,24 +98,29 @@ function MemeForm() {
           </label>
         </form>
       </div>
-      <div className="button-generate">
-        <button onClick={generateMeme}>Generate</button>
-      </div>
-      <div className="button-download">
-        <button onClick={downloadMeme}>Download</button>
-      </div>
-      <div className="button-clear">
-        <button onClick={() => setTopText('')(setBottomText(''))}>Clear</button>
-      </div>
       <div className="preview-area">
         <h2>Preview your meme before saving:</h2>
         <img
+          className="preview-img"
           data-test-id="meme-image"
           src={`https://api.memegen.link/images/${
-            selectedTemplate ? selectedTemplate : 'aag'
+            selectedTemplate ? selectedTemplate : 'bender'
           }/${topText ? topText : '_'}/${bottomText ? bottomText : ''}.png`}
           alt="Oops! You have not chosen anything yet or something did not work..."
         />
+      </div>
+      <div className="buttons">
+        <div className="button">
+          <button onClick={generateMeme}>Generate</button>
+        </div>
+        <div className="button-download">
+          <button onClick={downloadMeme}>Download</button>
+        </div>
+        <div className="button">
+          <button onClick={() => setTopText('')(setBottomText(''))}>
+            Clear
+          </button>
+        </div>
       </div>
     </div>
   );
