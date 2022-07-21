@@ -33,11 +33,7 @@ function MemeForm() {
   const handleSelection = (event) => {
     setSelectedTemplate(event.target.value);
   };
-  // const handleKey = (event) => {
-  //   if (event.keyCode === 13) {
-  //     setSelectedTemplate(event.target.value);
-  //   }
-  // };
+
   // function to generate the meme for preview - if/else statement because url path would be incorrect without text
   const generateMeme = () => {
     setGeneratedMeme(
